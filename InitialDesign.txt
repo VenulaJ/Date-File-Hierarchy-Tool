@@ -22,7 +22,11 @@ if valid, proceed past "if not, prompt..."
     
 check the system has enough storage on disk to complete the operation, by comparing the size of the original directory to the size of the available disk space + (estimation for amount of space taken up by the new folders) + 2%(of available disk space) ("saving room here to not overload the disk") where the new directory will be created
 if there isnt enough room, prompt the user to change the target directory for the file heiarchy
+
 move into the valid directory
+check to see if a file with the given Master Folder name exists
+if it does not exist, continue past "if it exists, prompt..."
+    if it exists, prompt user for a different name 
 
 create the master folder
 verify the master folder was created successfully
