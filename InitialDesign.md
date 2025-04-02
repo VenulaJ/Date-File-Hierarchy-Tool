@@ -1,5 +1,5 @@
 ''' 
-use api to get current date time?
+retrieve current date/time
 
 get user input for directories where the files we need to organize are stored, where we will store the new folder/file heiarchy, and the name of the Master folder we will create in the new directory
 
