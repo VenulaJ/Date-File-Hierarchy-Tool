@@ -1,12 +1,14 @@
 ''' 
 retrieve current date/time
 
-get user input for directories where the files we need to organize are stored, where we will store the new folder/file heiarchy, and the name of the Master folder we will create in the new directory
+get user input for directories where the files we need to organize are stored (directory x), where we will store the new folder/file heiarchy (directory y), and the name of the Master folder we will create in the new directory
 
 search to see both directories exist
 "directory validation funtion?"
 if valid, proceed past "if not, prompt..."
-    elif not, prompt user to try again (error, "x (and y) directories do not exist or a grammatical error may exist)
+    elif not, prompt user to try again (print: error, x (and/ or y) directoryString do not exist or a grammatical error may exist)
+        if only one directory is wrong, directoryString = 'directory'
+        else directoryString = 'directories' (for grammatical correctness, probably useless)
     
 check the system has enough storage on disk to complete the operation, by comparing the size of the original directory to the size of the available disk space + (estimation for amount of space taken up by the new folders) + 2%(of available disk space) ("saving room here to not overload the disk") where the new directory will be created
 if there isnt enough room, prompt the user to change the target directory for the file heiarchy
