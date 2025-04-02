@@ -1,5 +1,15 @@
 ''' 
 retrieve current date/time
+initialize window with default size and color
+gui window contains 2 browse buttons with text boxes for directory navigation
+one for original directory
+one for new directory
+below is a text box where the user inputs the name of the master file
+
+a "next" button is added at the bottom right corner
+on the next page, change next to "start" (show the user the details of the operation, directories, folder name.
+add a back button so the user can navigate back to the configuration menu
+
 
 get user input for directories where the files we need to organize are stored (directory x), where we will store the new folder/file heiarchy (directory y), and the name of the Master folder we will create in the new directory
 
