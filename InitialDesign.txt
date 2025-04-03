@@ -1,5 +1,6 @@
 ''' 
-retrieve current date/time
+track real time, user time, and sys time (can inform user about time estimation until process is complete, use logs to track performance data?)
+
 initialize window with default size and color
 gui window contains 2 browse buttons with text boxes for directory navigation
 one for original directory
