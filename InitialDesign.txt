@@ -1,4 +1,14 @@
 ''' 
+@imports
+    customtkinter ctk
+    tkinter filedialog, ttk, messagebox
+    os
+    shutil
+    json
+    ctklistbox
+    datetime
+    PIL Image, ImageTk
+
 track real time, user time, and sys time (can inform user about time estimation until process is complete, use logs to track performance data?)
 
 initialize window with default size and color
