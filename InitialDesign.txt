@@ -1,69 +1,69 @@
 ''' 
 @imports
-    customtkinter ctk
-    tkinter filedialog, ttk, messagebox
+    PyQt6
     os
     shutil
-    json
-    ctklistbox
     datetime
-    PIL Image, ImageTk
 
-track real time, user time, and sys time (can inform user about time estimation until process is complete, use logs to track performance data?)
+@params
+    need global to prevent system file tampering somehow
+    space_needed
+    available_space
 
 initialize window with default size and color
+
 gui window contains 2 browse buttons with text boxes for directory navigation
 one for original directory
-one for new directory
-below is a text box where the user inputs the name of the master file
+one for new directory, upon selecting new directory location you may also choose the name of the parent file in the heirarchy
 
-a "next" button is added at the bottom right corner
-on the next page, change next to "start" (show the user the details of the operation, directories, folder name.
-add a back button so the user can navigate back to the configuration menu
+display text boxes showing original_directory_size_in_GB(original_directory/'old_master_folder') and space_needed_in_GB(new_directory/'master_folder') 
 
+space_needed = (original_directory_size_in_GB(original_directory/'old_master_folder') + (calculated_space_taken_by_new_folders) + (cache_space_needed_while_copying_file_into_new_master_folder)
 
-get user input for directories where the files we need to organize are stored (directory x), where we will store the new folder/file heiarchy (directory y), and the name of the Master folder we will create in the new directory
+display a box that shows red if space_needed >= available_space and shows the amount of space you need to free up in order to complete the operation
+else, shows green and displays (available_space - space_needed) 'Space available after operation'
 
-search to see both directories exist
-"directory validation funtion?"
-if valid, proceed past "if not, prompt..."
-    elif not, prompt user to try again (print: error, x (and/ or y) directoryString do not exist or a grammatical error may exist)
-        if only one directory is wrong, directoryString = 'directory'
-        else directoryString = 'directories' (for grammatical correctness, probably useless)
+display approximate time for the operation in min:sec:ms to the left of the 'Start Operation' button
+
+settings menu (potential future release)
+    colorblind modes
+    light and dark mode
+    logger settings
+    other functionality for security features
+
+@functions
+    main
+    file_date_parser('.mp3',
+    directory_dialog_box
+    directory_validation?
+    convert_to_gb(space_needed, available_space, space_to_free_up)
+
+def validateDirectories(directory1_path, directory2_path):
+    #check directory1 exists by using the paths passed in as a variable
+    #unsure of the implementation of this function so it will be deffered to a later release
+    return directory1_path_status, directory2_path_status
+
+def folder_heirarchy_creation():
+    create_master_folder('master_folder_name')
+    verify it exists
+    open directory1
+    iterate through each file "for file in folder():"
+    check the date and determine if the folder corresponding to that date exists
+    if not, create that folder
+    else, move file into folder
     
-check the system has enough storage on disk to complete the operation, by comparing the size of the original directory to the size of the available disk space + (estimation for amount of space taken up by the new folders) + 2%(of available disk space) ("saving room here to not overload the disk") where the new directory will be created
-if there isnt enough room, prompt the user to change the target directory for the file heiarchy
+def main():
+    initialize the gui with default size parameters
+    button creation
+    display/textbox creation
 
-move into the valid directory
-check to see if a file with the given Master Folder name exists
-if it does not exist, continue past "if it exists, prompt..."
-    if it exists, prompt user for a different name 
+    load settings file (potential future release)
 
-create the master folder
-verify the master folder was created successfully
-move into the directory where the files to be organized are located
+    get input for directories through 'Browse' buttons
+    #future release ValidateDirectories(directory_string1, directory_string2)
 
-pick any item in the directory
-check the current item is file
-if file, continue past the "if folder, skip..."
-    elif folder, skip and store keys to identify these for use in log
-repeat as necessary for each item in the directory
+    await user action to begin the process
 
-check to see if the file is corrupt?
-if not corrupt, proceed past "if corrupt, print..."
-if corrupt, print message alerting the user that this file cannot be used and store a key to identify the invalid files (for printing a log with errors and description of the corrupt files)
-
-check the size of the file
-read date time of the file
-create folder that corresponds to the year of the file
-move into the year file
-check the first file was created successfully
-create another folder for the month of the file
-move into the month file
-check the second file was created successfully
-
-copy the first file into the folder
-verify the file copied matches the original file
-if they match delete the old one
-if not just delete the new corrupted file and try again, printing an error message alerting the user, store info in log
+    folder_heirarchy_creation()
+    
 '''
