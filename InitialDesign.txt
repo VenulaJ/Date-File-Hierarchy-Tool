@@ -47,10 +47,14 @@ def folder_heirarchy_creation():
     create_master_folder('master_folder_name')
     verify it exists
     open directory1
+
     iterate through each file "for file in folder():"
-    check the date and determine if the folder corresponding to that date exists
-    if not, create that folder
-    else, move file into folder
+        check file date and determine if the folder corresponding to that date exists
+        if not:
+            create folder('file_date_here'), verify creation, move file into folder, verify file integrity (compare to original?), delete original.
+        else:
+            move file into corresponding folder, verify file integrity, delete original 
+    #FIXME need exception handling for when the file integrity is compromised, user may choose to cancel the operation and troubleshoot their drive or try again, it will try 1x more then terminate the operation upon failure. if verification fails, end process so that it does not delete the original files (maybe save file deletion for the end of program cycle)
     
 def main():
     initialize the gui with default size parameters
