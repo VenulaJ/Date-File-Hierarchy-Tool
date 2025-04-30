@@ -1,4 +1,20 @@
 ''' 
+initialize window with default size and color
+
+gui window contains 2 browse buttons with text boxes for directory navigation
+    one for original directory
+    one for new directory, upon selecting new directory location you may also choose the name of the parent file in the heirarchy
+
+display text boxes showing original_directory_size_in_GB(original_directory/'old_master_folder') and space_needed_in_GB(new_directory/'master_folder') 
+
+space_needed = (original_directory_size_in_GB(original_directory/'old_master_folder') + (calculated_space_taken_by_new_folders) + (cache_space_needed_while_copying_file_into_new_master_folder)
+
+display a box that shows red if space_needed >= available_space and shows the amount of space you need to free up in order to complete the operation
+    else, shows green and displays (available_space - space_needed) 'Space available after operation'
+
+display approximate time for the operation in min:sec:ms to the left of the 'Start Operation' button
+
+
 @imports
     PyQt6
     os
@@ -6,56 +22,86 @@
     datetime
 
 @params
-    need global to prevent system file tampering somehow
+    need global to prevent system file tampering somehow #future feature
     space_needed
     available_space
+    file_path = 'C://User/directory2/master_folder/2025/MAY/file_name_1' #might have to specify each file by updating in the loop
 
-initialize window with default size and color
+@functions
+    create_folder()
+    convert_to_gb(space_needed, available_space, space_to_free_up)
+    directory_dialog_box
+    exception_handler(error_code, im sure i need other things in here)
+    file_date_info_processing()
+    file_integrity(filetype, expected_file_size, file_path)
+    folder_exists(expected_folder_name, expected_folder_path)
+    settings_menu()#future release
+    validateDirectories() #potentially just do one at a time and call the function twice with only the argument changing
 
-gui window contains 2 browse buttons with text boxes for directory navigation
-one for original directory
-one for new directory, upon selecting new directory location you may also choose the name of the parent file in the heirarchy
+    main()
 
-display text boxes showing original_directory_size_in_GB(original_directory/'old_master_folder') and space_needed_in_GB(new_directory/'master_folder') 
 
-space_needed = (original_directory_size_in_GB(original_directory/'old_master_folder') + (calculated_space_taken_by_new_folders) + (cache_space_needed_while_copying_file_into_new_master_folder)
+def create_folder('file_date_info'):
+    self.year='file_date_info'.year #somehow extract the year, string processing?
+    self.month='file_date_info'.month
+    #somehow create a new folder
+    #name the folder
 
-display a box that shows red if space_needed >= available_space and shows the amount of space you need to free up in order to complete the operation
-else, shows green and displays (available_space - space_needed) 'Space available after operation'
+def file_date_info_processing():
+    #somehow process the date info from files and store into variables to be returned
 
-display approximate time for the operation in min:sec:ms to the left of the 'Start Operation' button
+def file_integrity(str, long, str):
+    bool file_is_corrupt() #should return false if all values match, otherwise returns true?
 
-settings menu (potential future release)
+def folder_exists(str1, str2):
+    bool folder_exists() #should return false by default and true if folder exists
+    #string comparison? probably dont need a boolean here?
+
+def folder_heirarchy_creation():
+''' Create the folder structure in the desired directory starting from any file in the original directory '''
+
+    # master_folder_name can be stored in a variable and is taken from user input
+
+    create_folder('master_folder_name') #somehow handle folder creation, we also need to pass in the name the user chose for the master folder
+    folder_integrity('master_folder_name') #here we verify the folder we created exists
+    open directory1
+
+    iterate through each file "for file in folder():"
+        get file data(positional, size, name, date info)
+        file_date_info_processing()
+        
+        if folder_exists('expected_folder_name', 'expected_folder_path'):
+            #move_file()
+            #file_integrity()
+        if not:
+            create folder(year, month)
+
+            if folder_exists(): #returns true so we move the file
+                #exception handling for folder integrity through the same function as file integrity?
+                move file into folder 
+
+            if file_integrity(filetype, expected_file_size, file_path): #returns false so we handle the exception somehow
+                #FIXME need exception handling for when the file integrity is compromised, user may choose to cancel the operation and troubleshoot their drive or try again, it will try 1x more then terminate the operation upon failure. if verification fails, end process so that it does not delete the original files (maybe save file deletion for the end of                    program cycle)
+
+        else:
+            move file into corresponding folder, verify file integrity, delete original 
+
+        # ITS ALSO POSSIBLE TO INSTEAD MOVE THE FILES AFTER THE WHOLE HEIRARCHY IS CREATED AND VERIFIED
+        # WE MAY ONLY HAVE FOLDER CREATION AND VERIFICATION IN ONE FUNCTION
+        # THEN HAVE FILE COPYING INTO CORRESPONDING FOLDERS AND VERIFYING FILE INTEGRITY IN ANOTHER FUNCTION
+
+def settings_menu(potential future release)
     colorblind modes
     light and dark mode
     logger settings
     other functionality for security features
 
-@functions
-    main
-    file_date_parser('.mp3',
-    directory_dialog_box
-    directory_validation?
-    convert_to_gb(space_needed, available_space, space_to_free_up)
-
-def validateDirectories(directory1_path, directory2_path):
+def validateDirectories(str1, str2):
     #check directory1 exists by using the paths passed in as a variable
     #unsure of the implementation of this function so it will be deffered to a later release
     return directory1_path_status, directory2_path_status
 
-def folder_heirarchy_creation():
-    create_master_folder('master_folder_name')
-    verify it exists
-    open directory1
 
-    iterate through each file "for file in folder():"
-        check file date and determine if the folder corresponding to that date exists
-        if not:
-            create folder('file_date_here'), verify creation, move file into folder, verify file integrity (compare to original?), delete original.
-        else:
-            move file into corresponding folder, verify file integrity, delete original 
-    #FIXME need exception handling for when the file integrity is compromised, user may choose to cancel the operation and troubleshoot their drive or try again, it will try 1x more then terminate the operation upon failure. if verification fails, end process so that it does not delete the original files (maybe save file deletion for the end of program cycle)
-    
 def main():
     initialize the gui with default size parameters
     button creation
@@ -68,6 +114,7 @@ def main():
 
     await user action to begin the process
 
+    navigate to C://Users/directory2 so we can begin the folder creation process
     folder_heirarchy_creation()
     
 '''
