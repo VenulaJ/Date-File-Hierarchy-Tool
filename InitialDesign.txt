@@ -1,4 +1,6 @@
 ''' 
+MANY OF THE FUNCTIONS SHOWN WILL BE REPLACED USING LIBRARIES AND ONLY SHOW THE INTENDED POSITION AND STRUCTURE OF THE APPLICATION
+
 initialize window with default size and color
 
 gui window contains 2 browse buttons with text boxes for directory navigation
@@ -7,16 +9,27 @@ gui window contains 2 browse buttons with text boxes for directory navigation
 
 display text boxes showing original_directory_size_in_GB(original_directory/'old_master_folder') and space_needed_in_GB(new_directory/'master_folder') 
 
-space_needed = (original_directory_size_in_GB(original_directory/'old_master_folder') + (calculated_space_taken_by_new_folders) + (cache_space_needed_while_copying_file_into_new_master_folder)
+space_needed = (original_directory_size_in_GB(original_directory/'old_master_folder') + (calculated_space_taken_by_new_folders) + (cache_space_needed_while_copying_file_into_new_master_folder) #something along these lines, value can be found after space in the target directory has been calculated and stored
 
 display a box that shows red if space_needed >= available_space and shows the amount of space you need to free up in order to complete the operation
     else, shows green and displays (available_space - space_needed) 'Space available after operation'
 
 display approximate time for the operation in min:sec:ms to the left of the 'Start Operation' button
 
+source, destination = 'string containing path1', 'string containing path2'
+
+shutil.copy2(source, destination, ..*, follow_symLinks=True) #attempts to preserve metadata
+shutil.move(source, destination, copy_function=copy2) #moves the file recursively
+shutil.disk_useage(path) #path referring to 'C://Users/directoryX/master_folder' as a string
+
+void MainWindow::createMenus()
+    {
+    fileMenu = menuBar()->addMenu(tr("&File"));
+    
+    }
 
 @imports
-    PyQt6
+    from PyQt6 import QtWidgets
     os
     shutil
     datetime
@@ -89,6 +102,9 @@ def folder_heirarchy_creation():
         # ITS ALSO POSSIBLE TO INSTEAD MOVE THE FILES AFTER THE WHOLE HEIRARCHY IS CREATED AND VERIFIED
         # WE MAY ONLY HAVE FOLDER CREATION AND VERIFICATION IN ONE FUNCTION
         # THEN HAVE FILE COPYING INTO CORRESPONDING FOLDERS AND VERIFYING FILE INTEGRITY IN ANOTHER FUNCTION
+
+def get_directory_space_available():
+    #probably best to use a library for directory, folder, and file
 
 def settings_menu(potential future release)
     colorblind modes
