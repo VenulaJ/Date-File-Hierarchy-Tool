@@ -7,7 +7,6 @@ from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.button import Button
 from kivy.uix.textinput import TextInput
-from kivy.core.window import Window
 from kivy.uix.popup import Popup
 
 kivy.require('2.3.1')
